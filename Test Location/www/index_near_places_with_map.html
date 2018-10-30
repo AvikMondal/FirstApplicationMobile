@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Check My Location</title>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="key.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDid4-fwxKWBmpdvdXF7I2G4z1aBvav3fw"></script>
+        <script>
+        
+            var xmlhttp;    
+            var options;
+            var im = 'image/bluecircle.png';
+        
+        window.onload=function()
+        {
+            //document.addEventListener('deviceready', init);
+            init();
+        }
+        
+        function init()
+        {
+            navigator.geolocation.getCurrentPosition(success, error);
+            options={maximumAge : 3000, timeout : 5000, enableHighAccuracy : true};
+        }
+            
+        function getNearLocation(position)
+        {
+            navigator.geolocation.getCurrentPosition(getLocation, error,options);
+        
+        }
+        
+        function getLocation(position)
+        {
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            getAreaInfo(lat,long);
+        }
+        
+            
+        function success(position)
+        {
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            var mapOptions={center : {lat : lat ,lng : long }, zoom : 15};
+            
+            document.getElementById('lat').innerHTML += lat;
+            document.getElementById('long').innerHTML += long;
+            var myLatLng = new google.maps.LatLng(lat, long);
+            var map = new google.maps.Map(document.getElementById('mapCanvas'),mapOptions);
+            var userMarker = new google.maps.Marker({ position: myLatLng, map: map, icon: im });
+            
+        }
+        
+            function getAreaInfo(lat,long)
+        {
+            //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&key=YOUR_API_KEY
+            
+            var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=";
+            url += lat + ",";
+            url += long;
+            url += "&radius=500&types=food&key=" + key;
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = processPlace;
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            
+        }
+            
+        function processPlace()
+        {
+            var out="";
+            if(xmlhttp.readyState==4)
+            {
+                var theJSON = xmlhttp.responseText;
+                
+                var result = JSON.parse(theJSON);
+                var resultArray = result.results;
+                for(var x = 0; x < resultArray.length; x++)
+                {
+                   
+                    var collap = "<div data-role='collapsible'><h3>"+resultArray[x].name+"</h3><p>"+resultArray[x].vicinity+"</p></div>";
+                     $('#result').append($(collap).collapsible());
+                    
+                    
+                }
+            }
+        }
+            
+        function error(e)
+        {
+            alert(e.message);
+        }
+            
+            
+        </script>
+        <style>
+        
+            #AppFooter{
+                
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+            
+            #mapCanvas{
+                
+                height: 200px;
+                width: 100%;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div data-role="page">
+        <div data-role="header">
+        <h3>My Location </h3>
+        </div><!-- header -->
+        <div data-role="main" calss="ui-content">    
+        <script type="text/javascript" src="cordova.js"></script>
+        <label id='lat'>My current Latitude : </label>
+        <label id='long'>My current Longitude : </label>
+        <div id="mapCanvas"></div>
+        <button id='GetNearLocation' onclick="getNearLocation()">Get near Locations</button>
+        <div data-role="collapsible-set" id="result">
+        </div> <!-- collapsible set -->    
+        </div> <!-- Main -->
+        <div data-role="footer" id="AppFooter">
+            <h2>This is my first app</h2>
+            </div> <!-- footer -->
+        </div> <!-- Page -->
+    </body>
+</html>
