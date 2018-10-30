@@ -27,7 +27,7 @@
         function init()
         {
             navigator.geolocation.getCurrentPosition(success, error);
-            options={maximumAge : 3000, timeout : 5000, enableHighAccuracy : true};
+            options={maximumAge : 3000, timeout : 20000, enableHighAccuracy : false};
             //document.getElementById('btnPause').addEventListener('click' , MediaPause());
             player = document.getElementById('myMediaplayer');
             document.getElementById('rngDuration').max=Math.round(player.duration);
