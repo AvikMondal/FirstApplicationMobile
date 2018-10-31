@@ -124,18 +124,25 @@
             url += lat + ",";
             url += long;
             url += "&radius=500&types=food&key=" + key;
+            alert("Hello1");
             xmlhttp = new XMLHttpRequest();
+            alert("Hello2");
             xmlhttp.onreadystatechange = processPlace;
+            alert("Hello3");
             xmlhttp.open("GET", url, true);
+            alert("Hello4");
             xmlhttp.send();
+            alert("Hello5");
             
         }
             
         function processPlace()
         {
+            alert("Hello6");
             var out="";
             if(xmlhttp.readyState==4)
             {
+                alert("Hello7");
                 var theJSON = xmlhttp.responseText;
                 
                 var result = JSON.parse(theJSON);
