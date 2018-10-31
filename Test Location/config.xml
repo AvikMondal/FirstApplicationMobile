@@ -27,4 +27,5 @@
         <uses-permission name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
         </config-file>
     </platform>
+    <icon src="logo.png" width="57" height="57" />
 </widget>
