@@ -11,8 +11,9 @@
     
     <plugin name="cordova-plugin-geolocation" version="2.1.0" />
     <allow-navigation href="*" />
-    <allow-intent href="*" />
     <access origin="*" />
+    <access origin="http://maps.google.com" />
+    <access origin="https://maps.google.com" />
     <platform name="android">
         <config-file target="index.xml">
         <uses-permission android:name="android.permission.INTERNET" />
