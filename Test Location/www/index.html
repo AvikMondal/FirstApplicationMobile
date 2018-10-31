@@ -102,13 +102,14 @@
             var lat = position.coords.latitude;
             var long = position.coords.longitude;
             var mapOptions={center : {lat : lat ,lng : long }, zoom : 15};
-            
+            alert("Hi1");
             document.getElementById('lat').innerHTML += lat;
             document.getElementById('long').innerHTML += long;
             var myLatLng = new google.maps.LatLng(lat, long);
             var map = new google.maps.Map(document.getElementById('mapCanvas'),mapOptions);
             var userMarker = new google.maps.Marker({ position: myLatLng, map: map, icon: im });
-            alert(map);
+            alert("Hi2");
+            alert(map+"Hi3");
             
         }
         
