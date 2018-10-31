@@ -105,10 +105,13 @@
             alert("Hi1");
             document.getElementById('lat').innerHTML += lat;
             document.getElementById('long').innerHTML += long;
-            var myLatLng = new google.maps.LatLng(lat, long);
-            var map = new google.maps.Map(document.getElementById('mapCanvas'),mapOptions);
-            var userMarker = new google.maps.Marker({ position: myLatLng, map: map, icon: im });
             alert("Hi2");
+            var myLatLng = new google.maps.LatLng(lat, long);
+            alert("Hi3");
+            var map = new google.maps.Map(document.getElementById('mapCanvas'),mapOptions);
+            alert("Hi4");
+            var userMarker = new google.maps.Marker({ position: myLatLng, map: map, icon: im });
+            alert("Hi5");
             alert(map+"Hi3");
             
         }
