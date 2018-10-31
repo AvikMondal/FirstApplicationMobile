@@ -11,14 +11,15 @@
     
     <plugin name="cordova-plugin-geolocation" version="2.1.0" />
     <allow-navigation href="*" />
+    <allow-intent href="*" />
     <access origin="*" />
     <access origin="http://maps.google.com" />
     <access origin="https://maps.google.com" />
     <platform name="android">
         <config-file target="index.xml">
-        <uses-permission android:name="android.permission.INTERNET" />
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        <uses-permission name="android.permission.INTERNET" />
+        <uses-permission name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission name="android.permission.ACCESS_WIFI_STATE" />
         <uses-permission name="android.permission.ACCESS_COARSE_LOCATION" />
         <uses-permission name="android.permission.ACCESS_FINE_LOCATION" />
         <uses-permission name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
