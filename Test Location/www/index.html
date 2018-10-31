@@ -106,9 +106,9 @@
             document.getElementById('lat').innerHTML += lat;
             document.getElementById('long').innerHTML += long;
             alert("Hi2");
-            var myLatLng = new google.maps.LatLng(lat, long);
-            alert("Hi3");
             var map = new google.maps.Map(document.getElementById('mapCanvas'),mapOptions);
+            alert("Hi3");
+            var myLatLng = new google.maps.LatLng(lat, long);
             alert("Hi4");
             var userMarker = new google.maps.Marker({ position: myLatLng, map: map, icon: im });
             alert("Hi5");
@@ -124,29 +124,25 @@
             url += lat + ",";
             url += long;
             url += "&radius=500&types=food&key=" + key;
-            alert("Hello1");
             xmlhttp = new XMLHttpRequest();
-            alert("Hello2");
             xmlhttp.onreadystatechange = processPlace;
-            alert("Hello3");
             xmlhttp.open("GET", url, true);
-            alert("Hello4");
             xmlhttp.send();
-            alert("Hello5");
             
         }
             
         function processPlace()
         {
-            alert("Hello6");
             var out="";
             if(xmlhttp.readyState==4)
             {
-                alert("Hello7");
+                alert("Hello1");
                 var theJSON = xmlhttp.responseText;
-                
+                alert("Hello2");
                 var result = JSON.parse(theJSON);
+                alert("Hello3");
                 var resultArray = result.results;
+                alert("Hello4");
                 for(var x = 0; x < resultArray.length; x++)
                 {
                    
@@ -155,6 +151,7 @@
                     
                     
                 }
+                alert("Hello5");
             }
         }
             
